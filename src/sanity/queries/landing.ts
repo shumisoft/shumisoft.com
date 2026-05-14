@@ -5,5 +5,16 @@ import { Landing } from "@/types/landing";
 export const getLanding = async (): Promise<Landing> =>
     await client.fetch(groq`
         *[_type == "landing" && !(_id in path('drafts.**'))][0] {
-            hero
+            hero,
+            about {
+                title,
+                description,
+                skills[] {
+                    title,
+                    description,
+                    "icon": {
+                        "url": icon.asset -> url,
+                    }
+                }
+            }
         }`);

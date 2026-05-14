@@ -10,7 +10,7 @@ import { getProjects } from "@/sanity/queries/project";
 import { getTeam } from "@/sanity/queries/team";
 
 export default async function Home() {
-    const { hero } = await getLanding();
+    const { hero, about } = await getLanding();
 
     const projects = await getProjects();
 
@@ -20,7 +20,7 @@ export default async function Home() {
         <main className="min-h-screen bg-background">
             <Header />
             <HeroSection hero={hero} />
-            <AboutSection />
+            <AboutSection about={about} />
             <TeamSection team={team} />
             <ProjectsSection projects={projects} />
             <ContactSection />
